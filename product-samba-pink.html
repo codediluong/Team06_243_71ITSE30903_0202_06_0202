@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chi tiết sản phẩm</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Samba Star</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Sản phẩm</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html">Giỏ hàng</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="images/Samba/colection_images/SAMBA_OG_SHOES_Pink_JQ4496_01_00_standard.avif" alt="SAMBA OG PINK" class="img-fluid rounded">
+      </div>
+      <div class="col-md-6">
+        <h2 class="fw-bold">SAMBA OG PINK</h2>
+        <p class="text-muted">Dòng: Originals | Màu: Hồng</p>
+        <h4 class="text-danger">3.000.000₫</h4>
+        <p>Phiên bản màu hồng cá tính và nổi bật, dành cho những ai yêu thích sự khác biệt.</p>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Chọn size:</label>
+          <select class="form-select w-50" id="sizeSelect">
+            <option value="38">38</option>
+            <option value="39">39</option>
+            <option value="40">40</option>
+            <option value="41" selected>41</option>
+            <option value="42">42</option>
+          </select>
+        </div>
+
+        <button class="btn btn-dark w-100" onclick="addToCart()">Thêm vào giỏ hàng</button>
+        <div id="cartMessage" class="alert alert-success mt-3 d-none" role="alert">✅ Đã thêm vào giỏ hàng!</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function addToCart() {
+      const product = {
+        img: 'images/Samba/colection_images/SAMBA_OG_SHOES_Pink_JQ4496_01_00_standard.avif',
+        name: 'SAMBA OG PINK',
+        price: 3000000,
+        size: document.getElementById('sizeSelect').value,
+        quantity: 1
+      };
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingIndex = cart.findIndex(item => item.name === product.name && item.size === product.size);
+
+      if (existingIndex >= 0) {
+        cart[existingIndex].quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      document.getElementById('cartMessage').classList.remove('d-none');
+      setTimeout(() => {
+        document.getElementById('cartMessage').classList.add('d-none');
+      }, 2000);
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <div class="container my-5">
+    <h4 class="fw-bold mb-4">Sản phẩm liên quan</h4>
+    <div class="row row-cols-2 row-cols-md-4 g-4">
+      
+<div class="col">
+  <a href="product-samba-og.html" class="text-decoration-none text-dark">
+    <div class="card border-0">
+      <img src="images/Samba/colection_images/Samba_OG_Shoes_White_ID0478_01_standard.avif" class="card-img-top" alt="Samba OG Shoes">
+      <div class="card-body px-0">
+        <h6 class="fw-bold">2.700.000₫</h6>
+        <p class="mb-1">Samba OG Shoes</p>
+        <small class="text-muted d-block">Originals</small>
+      </div>
+    </div>
+  </a>
+</div>
+
+
+<div class="col">
+  <a href="product-samba-jp.html" class="text-decoration-none text-dark">
+    <div class="card border-0">
+      <img src="images/Samba/colection_images/Samba_Jp_Shoes_White_JR0964_01_00_standard.avif" class="card-img-top" alt="Samba JP Shoes">
+      <div class="card-body px-0">
+        <h6 class="fw-bold">3.000.000₫</h6>
+        <p class="mb-1">Samba JP Shoes</p>
+        <small class="text-muted d-block">Originals</small>
+      </div>
+    </div>
+  </a>
+</div>
+
+
+<div class="col">
+  <a href="product-samba-jane.html" class="text-decoration-none text-dark">
+    <div class="card border-0">
+      <img src="images/Samba/colection_images/Samba_Jane_Shoes_Green_JR7340_01_00_standard.avif" class="card-img-top" alt="Samba Jane Shoes">
+      <div class="card-body px-0">
+        <h6 class="fw-bold">2.400.000₫</h6>
+        <p class="mb-1">Samba Jane Shoes</p>
+        <small class="text-muted d-block">Originals</small>
+      </div>
+    </div>
+  </a>
+</div>
+
+    </div>
+  </div>
+
+</body>
+</html>
